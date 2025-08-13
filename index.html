@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~*~ fUNNy BaNd NaMe gEnErAtOr ~*~</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
+        
+        body {
+            /* Windows 95 style sky background */
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/1920x1080_blue_sky_clouds_background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'VT323', monospace;
+            color: #800080;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Aligns content to the top */
+            gap: 20px; /* Space between the columns */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        
+        .left-images, .right-images {
+            flex-shrink: 0;
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around; /* This spaces the items evenly */
+            align-items: center;
+            position: relative; /* Set position to relative for pseudo-element */
+            height: 100vh;
+        }
+
+        .photo-container {
+            /* We've removed position: absolute here */
+            transform: rotate(-5deg);
+            border: 4px solid #fff;
+            box-shadow: 5px 5px 0 #00ffff;
+            margin: 10px; /* Add some margin to give them space */
+        }
+
+        .photo-container.p2 {
+            transform: rotate(8deg);
+            border: 4px solid #ff1493;
+            box-shadow: 5px 5px 0 #800080;
+        }
+        
+        .photo-container.p3 {
+            transform: rotate(-12deg);
+            border: 4px solid #ffd700;
+            box-shadow: 5px 5px 0 #ff00ff;
+        }
+
+        .photo-container.p4 {
+            transform: rotate(10deg);
+            border: 4px solid #00ffff;
+            box-shadow: 5px 5px 0 #ff1493;
+        }
+
+        .photo-container.p5 {
+            transform: rotate(-8deg);
+            border: 4px solid #ffd700;
+            box-shadow: 5px 5px 0 #ff00ff;
+        }
+
+        .photo-container.p6 {
+            transform: rotate(15deg);
+            border: 4px solid #fff;
+            box-shadow: 5px 5px 0 #800080;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 2px solid #000;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 8px 8px 0px 0px #000;
+            border-style: solid;
+        }
+
+        h1 {
+            font-family: 'Shrikhand', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+        
+        h1 span {
+            display: inline-block;
+            transition: transform 0.2s ease-in-out;
+        }
+        h1 .part1 { color: #ff00ff; text-shadow: 3px 3px 0 #00ffff; transform: rotate(-3deg); }
+        h1 .part2 { color: #ffd700; text-shadow: 3px 3px 0 #800080; transform: rotate(2deg); }
+        h1 .part3 { color: #ff1493; text-shadow: 3px 3px 0 #fff; transform: rotate(-5deg); }
+
+
+        .marquee {
+            font-family: 'Shrikhand', cursive;
+            color: #ff00ff;
+            background-color: #ffd700;
+            border: 2px solid #00ffff;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .band-name-display {
+            background-color: #c0c0c0;
+            border: 3px solid #000;
+            padding: 20px;
+            font-size: 2.5rem;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-family: 'Shrikhand', cursive;
+            text-shadow: none;
+            margin: 20px 0;
+            word-wrap: break-word;
+        }
+
+        .message-marquee {
+            font-family: 'VT323', monospace;
+            color: #800080;
+            background-color: #ffd700;
+            border: 2px dashed #ff1493;
+            padding: 5px;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            box-shadow: 3px 3px 0px 0px #00ffff;
+        }
+
+        .generate-button {
+            background-color: #ffd700;
+            border: 3px outset #ff1493;
+            color: #800080;
+            font-family: 'VT323', monospace;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: 5px 5px 0px 0px #00ffff;
+            transition: all 0.1s ease-in-out;
+        }
+
+        .generate-button:active {
+            border-style: inset;
+            box-shadow: 2px 2px 0px 0px #00ffff;
+            transform: translateY(2px);
+        }
+
+        @media (max-width: 768px) {
+            .left-images, .right-images {
+                display: none;
+            }
+            body {
+                align-items: center;
+            }
+            .container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Left side column for chaotic photos -->
+    <div class="left-images hidden md:block">
+        <div class="photo-container" >
+            <img src="https://placehold.co/150x120/ff1493/fff?text=Band+Photo" alt="90s band photo">
+        </div>
+        <div class="photo-container p2">
+            <img src="https://placehold.co/120x150/ff00ff/fff?text=Band+Photo" alt="90s band photo">
+        </div>
+        <div class="photo-container p3">
+            <img src="https://placehold.co/180x100/ffd700/fff?text=Band+Photo" alt="90s band photo">
+        </div>
+    </div>
+
+    <!-- Main container for the app -->
+    <div class="container">
+        <!-- Title of the application -->
+        <h1>
+            <span class="part1">~*~</span>
+            <span class="part2">BaNd NaMe</span>
+            <span class="part3">gEnErAtOr</span>
+            <span class="part1">~*~</span>
+        </h1>
+
+        <!-- Marquee for some extra flair -->
+        <marquee class="marquee" behavior="alternate" scrollamount="5">
+            get ur new band name here!!!!!
+        </marquee>
+
+        <!-- Display area for the generated band name -->
+        <div id="bandNameDisplay" class="band-name-display">
+            <!-- The band name will appear here -->
+        </div>
+
+        <!-- Marquee for the stupid little message -->
+        <marquee id="messageMarquee" class="message-marquee" behavior="scroll" direction="right" scrollamount="8">
+            <!-- The message will appear here -->
+        </marquee>
+
+        <!-- Button to generate a new name -->
+        <button id="generateButton" class="generate-button">
+            gENeRaTe NeW nAmE!!1!
+        </button>
+    </div>
+
+    <!-- Right side column for chaotic photos -->
+    <div class="right-images hidden md:block">
+        <div class="photo-container p4">
+            <img src="https://placehold.co/140x160/00ffff/fff?text=Band+Photo" alt="90s band photo">
+        </div>
+        <div class="photo-container p5">
+            <img src="https://placehold.co/160x130/ff00ff/fff?text=Band+Photo" alt="90s band photo">
+        </div>
+        <div class="photo-container p6">
+            <img src="https://placehold.co/130x170/800080/fff?text=Band+Photo" alt="90s band photo">
+        </div>
+    </div>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Get references to the HTML elements
+        const generateButton = document.getElementById('generateButton');
+        const bandNameDisplay = document.getElementById('bandNameDisplay');
+        const messageMarquee = document.getElementById('messageMarquee');
+
+        // Define the expanded lists of words for the band names
+        const adjectives = [
+            "Atomic", "Fuzzy", "Spooky", "Invisible", "Cosmic", "Electric", "Whispering", "Screaming", "Sleepy", "Fluffy", "Galactic", "Velvet", "Broken", "Rubber", "Glitter", "Angry",
+            "Chaotic", "Stinky", "Glittering", "Unhinged", "Sentient", "Radioactive", "Soggy", "Majestic", "Obnoxious", "Gigantic", "Tiny", "Plastic", "Digital", "Analog", "Aquatic",
+            "Sublime", "Cranky", "Wobbly", "Luminous", "Prickly", "Bouncy", "Cursed", "Enormous", "Philosophical"
+        ];
+        const nouns = [
+            "Pancakes", "Robots", "Wombats", "Zombies", "Astronauts", "Coconuts", "Ducks", "Tacos", "Goblins", "Potatoes", "Llamas", "Dinosaurs", "Cupcakes", "Socks", "Pickles", "Toasters",
+            "Telephones", "Blenders", "Muffin Tops", "Unicorns", "Pigeons", "Squirrels", "Bananas", "Lasers", "Spaceships", "Hammers", "Guitars", "Ferrets", "Gardens", "Kettles", "Eyeballs",
+            "Computers", "Balloons", "Whispers", "Dreams"
+        ];
+        const verbs = [
+            "Exploding", "Dancing", "Shattering", "Whispering", "Screaming", "Melting", "Flying", "Glowing", "Crying", "Chewing", "Floating", "Dreaming", "Singing", "Bouncing", "Skipping", "Crawling",
+            "Juggling", "Polishing", "Burping", "Wiggling", "Squeaking", "Frying", "Staring", "Yelling", "Mumbling", "Tinkering", "Strumming", "Phasing", "Giggling", "Waking", "Slumbering",
+            "Wandering", "Leaping", "Galloping", "Pondering"
+        ];
+        const genres = [
+            "Disco", "Funk", "Punk", "Metal", "Jazz", "Folk", "Ska", "Soul", "Grunge", "Pop"
+        ];
+
+        // Define the list of stupid little messages
+        const stupidMessages = [
+            "~*~ this name is totally da bomb! ~*~",
+            "I'm not crying, you're crying.",
+            "Are you ready for some sweet tunes?",
+            "Just click the button, duh!",
+            "OMG! a new band name! LOL!",
+            "100% certified fresh.",
+            "Don't tell my mom I'm a band.",
+            "The 90s called, they want their band name back... but not really.",
+            "Your music will be like a bad GIF.",
+            "Your new name is... *so* fetch.",
+            "Band life chose me, not the other way around."
+        ];
+
+        // Function to generate a random band name and message
+        function generateNameAndMessage() {
+            // Pick a random format for the name
+            const format = Math.floor(Math.random() * 3);
+            let bandName;
+
+            // Generate a name based on the selected format
+            switch (format) {
+                case 0:
+                    // Format: "The [Adjective] [Noun]s"
+                    const adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
+                    const noun1 = nouns[Math.floor(Math.random() * nouns.length)];
+                    bandName = `The ${adj1} ${noun1}s`;
+                    break;
+                case 1:
+                    // Format: "[Verb]-ing [Noun]s"
+                    const verb1 = verbs[Math.floor(Math.random() * verbs.length)];
+                    const noun2 = nouns[Math.floor(Math.random() * nouns.length)];
+                    bandName = `${verb1} ${noun2}s`;
+                    break;
+                case 2:
+                    // Format: "[Adjective] [Adjective] [Genre]"
+                    const adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
+                    const adj3 = adjectives[Math.floor(Math.random() * adjectives.length)];
+                    const genre1 = genres[Math.floor(Math.random() * genres.length)];
+                    bandName = `${adj2} ${adj3} ${genre1}`;
+                    break;
+            }
+
+            // Pick a random message from the list
+            const randomMessage = stupidMessages[Math.floor(Math.random() * stupidMessages.length)];
+
+            // Update the displays with the new content
+            bandNameDisplay.textContent = bandName;
+            messageMarquee.textContent = randomMessage;
+        }
+
+        // Add an event listener to the button to generate a new name and message on click
+        generateButton.addEventListener('click', generateNameAndMessage);
+
+        // Generate a name and message when the page first loads
+        window.addEventListener('load', generateNameAndMessage);
+    </script>
+</body>
+</html>
