@@ -310,40 +310,30 @@
             "The Traveling Wilburys"
         ];
 
-        // Function to generate a random band name and message
+               // Function to generate a random band name and message
         function generateNameAndMessage() {
-            // Now picks from 5 possible formats, including the new wildcard option
-            const format = Math.floor(Math.random() * 5);
+            // Now picks from 4 possible formats, as the genre-based format is removed
+            const format = Math.floor(Math.random() * 4);
             let bandName;
 
             // An array of all name lists for the wildcard format
-            const allLists = [adjectives, nouns, verbs, genres, conversationalStarters, conversationalEndings, descriptiveNouns];
-            const listNames = ["Adjective", "Noun", "Verb", "Conversational Starter", "Conversational Ending", "Descriptive Noun"];
+            const allLists = [adjectives, nouns, verbs, conversationalStarters, conversationalEndings, descriptiveNouns];
 
             // Generate a name based on the selected format
             switch (format) {
                 case 0:
-                    // Format: "The [Adjective] [Noun]s"
+                    // Format: "The [Adjective] [Noun]"
                     const adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
                     const noun1 = nouns[Math.floor(Math.random() * nouns.length)];
-                    // Fix: No longer hardcoding 's'
                     bandName = `The ${adj1} ${noun1}`;
                     break;
                 case 1:
-                    // Format: "[Verb]-ing [Noun]s"
+                    // Format: "[Verb]-ing [Noun]"
                     const verb1 = verbs[Math.floor(Math.random() * verbs.length)];
                     const noun2 = nouns[Math.floor(Math.random() * nouns.length)];
-                    // Fix: No longer hardcoding 's'
                     bandName = `${verb1} ${noun2}`;
                     break;
                 case 2:
-                    // Format: "[Adjective] [Adjective] [Genre]"
-                    const adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
-                    const adj3 = adjectives[Math.floor(Math.random() * adjectives.length)];
-                    const genre1 = genres[Math.floor(Math.random() * genres.length)];
-                    bandName = `${adj2} ${adj3} ${genre1}`;
-                    break;
-                case 3:
                     // New format: Conversational/Descriptive name
                     const subFormat = Math.floor(Math.random() * 2);
                     if (subFormat === 0) {
@@ -356,7 +346,7 @@
                         bandName = descriptiveNouns[Math.floor(Math.random() * descriptiveNouns.length)];
                     }
                     break;
-                case 4:
+                case 3:
                     // Brand new wildcard format!
                     // Randomly pick two different lists to combine
                     let list1Index = Math.floor(Math.random() * allLists.length);
@@ -390,6 +380,6 @@
 
         // Generate a name and message when the page first loads
         window.addEventListener('load', generateNameAndMessage);
-        </script>
+    </script>
 </body>
 </html>
