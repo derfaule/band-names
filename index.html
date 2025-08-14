@@ -240,7 +240,7 @@
         const bandNameDisplay = document.getElementById('bandNameDisplay');
         const messageMarquee = document.getElementById('messageMarquee');
 
-        // Define the expanded lists of words for the band names
+       // Define the expanded lists of words for the band names
         const adjectives = [
             "Atomic", "Fuzzy", "Spooky", "Invisible", "Cosmic", "Electric", "Whispering", "Screaming", "Sleepy", "Fluffy", "Galactic", "Velvet", "Broken", "Rubber", "Glitter", "Angry",
             "Chaotic", "Stinky", "Glittering", "Unhinged", "Sentient", "Radioactive", "Soggy", "Majestic", "Obnoxious", "Gigantic", "Tiny", "Plastic", "Digital", "Analog", "Aquatic",
@@ -260,6 +260,19 @@
             "Disco", "Funk", "Punk", "Metal", "Jazz", "Folk", "Ska", "Soul", "Grunge", "Pop"
         ];
 
+        // New lists for conversational/descriptive names
+        const conversationalStarters = [
+            "I Can't Believe It's Not", "There's a Lot of", "Someone Still Loves You", "The World Is a Beautiful Place", "Please Don't Tell My Mom", "It's a Trap!", "I Think We Need a",
+            "We're Having a Great Time", "I've Been Meaning to Ask", "Did You See the", "This Is the Best Time", "We're Not Supposed to Be", "The Problem Is"
+        ];
+        const conversationalEndings = [
+            "But the Light's Still On", "And We Are No Longer Afraid to Die", "In the Basement", "On a Tuesday Afternoon", "For Some Strange Reason", "Over There",
+            "And I Forgot My Keys", "So You Should Probably Leave"
+        ];
+        const descriptiveNouns = [
+            "The Presidents of the United States of America", "The Young Fresh Fellows", "The California Raisins", "The Monkees"
+        ];
+
         // Define the list of stupid little messages
         const stupidMessages = [
             "~*~ this name is totally da bomb! ~*~",
@@ -272,14 +285,19 @@
             "The 90s called, they want their band name back... but not really.",
             "Your music will be like a bad GIF.",
             "Your new name is... *so* fetch.",
-            "Band life chose me, not the other way around."
+            "Band life chose me, not the other way around.",
+            "The Traveling Wilburys"
         ];
 
         // Function to generate a random band name and message
         function generateNameAndMessage() {
-            // Pick a random format for the name
-            const format = Math.floor(Math.random() * 3);
+            // Now picks from 5 possible formats, including the new wildcard option
+            const format = Math.floor(Math.random() * 5);
             let bandName;
+
+            // An array of all name lists for the wildcard format
+            const allLists = [adjectives, nouns, verbs, genres, conversationalStarters, conversationalEndings, descriptiveNouns];
+            const listNames = ["Adjective", "Noun", "Verb", "Genre", "Conversational Starter", "Conversational Ending", "Descriptive Noun"];
 
             // Generate a name based on the selected format
             switch (format) {
@@ -287,13 +305,15 @@
                     // Format: "The [Adjective] [Noun]s"
                     const adj1 = adjectives[Math.floor(Math.random() * adjectives.length)];
                     const noun1 = nouns[Math.floor(Math.random() * nouns.length)];
-                    bandName = `The ${adj1} ${noun1}s`;
+                    // Fix: No longer hardcoding 's'
+                    bandName = `The ${adj1} ${noun1}`;
                     break;
                 case 1:
                     // Format: "[Verb]-ing [Noun]s"
                     const verb1 = verbs[Math.floor(Math.random() * verbs.length)];
                     const noun2 = nouns[Math.floor(Math.random() * nouns.length)];
-                    bandName = `${verb1} ${noun2}s`;
+                    // Fix: No longer hardcoding 's'
+                    bandName = `${verb1} ${noun2}`;
                     break;
                 case 2:
                     // Format: "[Adjective] [Adjective] [Genre]"
@@ -301,6 +321,38 @@
                     const adj3 = adjectives[Math.floor(Math.random() * adjectives.length)];
                     const genre1 = genres[Math.floor(Math.random() * genres.length)];
                     bandName = `${adj2} ${adj3} ${genre1}`;
+                    break;
+                case 3:
+                    // New format: Conversational/Descriptive name
+                    const subFormat = Math.floor(Math.random() * 2);
+                    if (subFormat === 0) {
+                        // Combines a conversational starter and an ending
+                        const starter = conversationalStarters[Math.floor(Math.random() * conversationalStarters.length)];
+                        const ending = conversationalEndings[Math.floor(Math.random() * conversationalEndings.length)];
+                        bandName = `${starter} ${ending}`;
+                    } else {
+                        // Picks from a list of overly descriptive names
+                        bandName = descriptiveNouns[Math.floor(Math.random() * descriptiveNouns.length)];
+                    }
+                    break;
+                case 4:
+                    // Brand new wildcard format!
+                    // Randomly pick two different lists to combine
+                    let list1Index = Math.floor(Math.random() * allLists.length);
+                    let list2Index = Math.floor(Math.random() * allLists.length);
+
+                    // Make sure the lists are not the same
+                    while (list1Index === list2Index) {
+                        list2Index = Math.floor(Math.random() * allLists.length);
+                    }
+
+                    const list1 = allLists[list1Index];
+                    const list2 = allLists[list2Index];
+                    
+                    const word1 = list1[Math.floor(Math.random() * list1.length)];
+                    const word2 = list2[Math.floor(Math.random() * list2.length)];
+
+                    bandName = `${word1} ${word2}`;
                     break;
             }
 
@@ -317,6 +369,6 @@
 
         // Generate a name and message when the page first loads
         window.addEventListener('load', generateNameAndMessage);
-    </script>
+        </script>
 </body>
 </html>
