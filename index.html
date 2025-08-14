@@ -37,46 +37,53 @@
             height: 100vh;
         }
 
+        @keyframes dance {
+            0% { transform: rotate(-5deg) scale(1); }
+            25% { transform: rotate(5deg) scale(1.05); }
+            50% { transform: rotate(-5deg) scale(1); }
+            75% { transform: rotate(5deg) scale(1.05); }
+            100% { transform: rotate(-5deg) scale(1); }
+        }
+
         .photo-container {
-            /* We've removed position: absolute here */
-            transform: rotate(-5deg);
             border: 4px solid #fff;
             box-shadow: 5px 5px 0 #00ffff;
             margin: 10px; /* Add some margin to give them space */
+            animation: dance 3s infinite alternate ease-in-out;
         }
 
         .photo-container.p2 {
-            transform: rotate(8deg);
             border: 4px solid #ff1493;
             box-shadow: 5px 5px 0 #800080;
+            animation-delay: 0.5s; /* Stagger the animation start for more chaos */
         }
         
         .photo-container.p3 {
-            transform: rotate(-12deg);
             border: 4px solid #ffd700;
             box-shadow: 5px 5px 0 #ff00ff;
+            animation-delay: 1s;
         }
 
         .photo-container.p4 {
-            transform: rotate(10deg);
             border: 4px solid #00ffff;
             box-shadow: 5px 5px 0 #ff1493;
+            animation-delay: 1.5s;
         }
 
         .photo-container.p5 {
-            transform: rotate(-8deg);
             border: 4px solid #ffd700;
             box-shadow: 5px 5px 0 #ff00ff;
+            animation-delay: 2s;
         }
 
         .photo-container.p6 {
-            transform: rotate(15deg);
             border: 4px solid #fff;
             box-shadow: 5px 5px 0 #800080;
+            animation-delay: 2.5s;
         }
 
         .photo-container img {
-            width: 100%;
+            width: 180px; /* Bigger image size */
             height: auto;
             display: block;
         }
