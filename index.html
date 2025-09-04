@@ -45,7 +45,7 @@
             75% { transform: rotate(5deg) scale(1.05); }
             100% { transform: rotate(-5deg) scale(1); }
         }
-    
+        
         /* Keyframes for the pug "flying" animation */
         @keyframes fly {
             0% { transform: translate(-100vw, 5vh) scaleX(1); }
@@ -272,7 +272,7 @@
         const nouns = [
             "Pancakes", "Robots", "Wombats", "Zombies", "Astronauts", "Coconuts", "Ducks", "Tacos", "Goblins", "Potatoes", "Llamas", "Dinosaurs", "Cupcakes", "Socks", "Pickles", "Toasters",
             "Telephones", "Blenders", "Muffin Tops", "Unicorns", "Pigeons", "Squirrels", "Bananas", "Lasers", "Spaceships", "Hammers", "Guitars", "Ferrets", "Gardens", "Kettles", "Eyeballs",
-            "Computers", "Balloons", "Whispers", "Dreams" , "Unicorns"
+            "Computers", "Balloons", "Whispers", "Dreams"
         ];
         const verbs = [
             "Exploding", "Dancing", "Shattering", "Whispering", "Screaming", "Melting", "Flying", "Glowing", "Crying", "Chewing", "Floating", "Dreaming", "Singing", "Bouncing", "Skipping", "Crawling",
@@ -293,6 +293,9 @@
         const descriptiveNouns = [
             "The Presidents of the United States of America", "The Young Fresh Fellows", "The California Raisins", "The Monkees" , "The Who"
         ];
+        
+        // Removed the "descriptiveNouns" from the generator to focus on new combinations
+        const allLists = [adjectives, nouns, verbs, conversationalStarters, conversationalEndings];
 
         // Define the list of stupid little messages
         const stupidMessages = [
@@ -306,18 +309,14 @@
             "The 90s called, they want their band name back... but not really.",
             "Your music will be like a bad GIF.",
             "Your new name is... *so* fetch.",
-            "Band life chose me, not the other way around.",
-            "The Traveling Wilburys"
+            "Band life chose me, not the other way around."
         ];
 
-               // Function to generate a random band name and message
+        // Function to generate a random band name and message
         function generateNameAndMessage() {
-            // Now picks from 4 possible formats, as the genre-based format is removed
-            const format = Math.floor(Math.random() * 4);
+            // Updated to pick from more formats for more diversity
+            const format = Math.floor(Math.random() * 6);
             let bandName;
-
-            // An array of all name lists for the wildcard format
-            const allLists = [adjectives, nouns, verbs, conversationalStarters, conversationalEndings, descriptiveNouns];
 
             // Generate a name based on the selected format
             switch (format) {
@@ -334,25 +333,29 @@
                     bandName = `${verb1} ${noun2}`;
                     break;
                 case 2:
-                    // New format: Conversational/Descriptive name
-                    const subFormat = Math.floor(Math.random() * 2);
-                    if (subFormat === 0) {
-                        // Combines a conversational starter and an ending
-                        const starter = conversationalStarters[Math.floor(Math.random() * conversationalStarters.length)];
-                        const ending = conversationalEndings[Math.floor(Math.random() * conversationalEndings.length)];
-                        bandName = `${starter} ${ending}`;
-                    } else {
-                        // Picks from a list of overly descriptive names
-                        bandName = descriptiveNouns[Math.floor(Math.random() * descriptiveNouns.length)];
-                    }
+                    // New Format: "[Adjective] and the [Nouns]"
+                    const adj2 = adjectives[Math.floor(Math.random() * adjectives.length)];
+                    const noun3 = nouns[Math.floor(Math.random() * nouns.length)];
+                    bandName = `${adj2} and the ${noun3}s`;
                     break;
                 case 3:
-                    // Brand new wildcard format!
-                    // Randomly pick two different lists to combine
+                    // New Format: "[Verb]ing and the [Verbs]"
+                    const verb2 = verbs[Math.floor(Math.random() * verbs.length)];
+                    const verb3 = verbs[Math.floor(Math.random() * verbs.length)];
+                    bandName = `${verb2} and the ${verb3}s`;
+                    break;
+                case 4:
+                    // New Format: Shortened Conversational with a Noun
+                    const starter = conversationalStarters[Math.floor(Math.random() * conversationalStarters.length)];
+                    const noun4 = nouns[Math.floor(Math.random() * nouns.length)];
+                    bandName = `${starter} ${noun4}`;
+                    break;
+                case 5:
+                    // The "Wildcard" format - combines two random words from any two different lists
                     let list1Index = Math.floor(Math.random() * allLists.length);
                     let list2Index = Math.floor(Math.random() * allLists.length);
 
-                    // Make sure the lists are not the same
+                    // Ensure the lists are not the same
                     while (list1Index === list2Index) {
                         list2Index = Math.floor(Math.random() * allLists.length);
                     }
@@ -383,3 +386,4 @@
     </script>
 </body>
 </html>
+
